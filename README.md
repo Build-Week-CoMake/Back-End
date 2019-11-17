@@ -3,7 +3,7 @@
 ## keys with a * are provided by the backend 
 
 | Description  | Endpoint   | Shape | 
-| ------------ | ------------ |
+| ------------ | ------------ | ------------ |
 | login user  | /login (POST)   | { username: " ", password: " "} | 
 | create new user  |  /login/new (POST)  | { username: " ", password: " ", location:" "} | 
 | get all issues | /issues (GET) | |
