@@ -1,18 +1,22 @@
 // Update with your config settings.
 
+
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      filename: './database/dev.db'
+      filename: './database/dev.db',
+      username: "postgres",
+      password: ""
     },
     migrations: {
       directory: "./database/migrations"
     },
     seeds: {
       directory: "./database/seeds"
-    }
+    },
+    useNullAsDefault: true
   },
 
   production: {
@@ -26,7 +30,8 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations'
-    }
+    },
+    useNullAsDefault: true
   }
 
 };
