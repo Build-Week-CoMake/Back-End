@@ -37,9 +37,9 @@ router.post('/vote', (req, res) => {
 		});
 });
 
-router.delete('/:uid/:iid', (req, res) => {
-	const userId = req.params.uid;
-	const issueId = req.params.iid;
+router.delete('/delete', (req, res) => {
+	const userId = req.body.user_id;
+	const issueId = req.body.issue_id;
 
 	db
 		.remove(userId, issueId)
