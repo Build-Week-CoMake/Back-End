@@ -2,8 +2,8 @@ const router = require('express').Router();
 const db = require('./upvote.model');
 
 //get list of all issues user has voted on
-router.get('/:id', (req, res) => {
-	const id = req.params.id;
+router.get('/', (req, res) => {
+	const id = req.body.user_id;
 	db
 		.getUserVote(id)
 		.then((votes) => {
