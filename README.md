@@ -11,6 +11,6 @@
 | add new issue | /issues (POST) | { *id:int, title:" ", img: "(url)", location: " ", description: " "} |
 | edit issue | /issues/:id (PUT) | {any modified field} |
 | delete issue | /issues/:id (DELETE) | | 
-| get user's upvotes | /upvote/ (GET) | {user_id: "username"} |
-| add new upvote | /upvote/vote/ (POST) | {user_id: "username", issue_id: int} |
-| remove upvote | /upvote/delete (DELETE) |  {user_id: "username", issue_id: int} |
+| get user's upvotes | /upvote/ (GET) | |
+| add new upvote | /upvote/:id (POST) | |
+| remove upvote | /upvote/:id (DELETE) | |

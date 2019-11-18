@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const db = require('./upvote.model');
+const restricted = require('../middleware.js');
 
 //get list of all issues user has voted on
-router.get('/', (req, res) => {
-	const id = req.body.user_id;
+router.get('/', restricted, (req, res) => {
+	const id = req.token.username;
 	db
 		.getUserVote(id)
 		.then((votes) => {
@@ -20,11 +21,11 @@ router.get('/', (req, res) => {
 });
 
 //add a users vote into the database
-router.post('/vote', (req, res) => {
-	const voteData = req.body;
-	if (!req.body.user_id || !req.body.issue_id) {
-		res.status(401).send('user_id and issue_id are required');
-	}
+router.post('/:id', restricted, (req, res) => {
+	const voteData = {
+		user_id: req.token.username,
+		issue_id: req.params.id
+	};
 
 	db
 		.add(voteData)
@@ -37,9 +38,9 @@ router.post('/vote', (req, res) => {
 		});
 });
 
-router.delete('/delete', (req, res) => {
-	const userId = req.body.user_id;
-	const issueId = req.body.issue_id;
+router.delete('/:id', restricted, (req, res) => {
+	const userId = req.token.username;
+	const issueId = req.params.id;
 
 	db
 		.remove(userId, issueId)
