@@ -2,18 +2,23 @@ const knex = require('../database/config');
 
 module.exports = {
 	add,
-	update,
-	remove
+	remove,
+	getUserVote,
+	getById
 };
 
-function add(issue) {
-	return null;
+function add(upvote) {
+	return db('upvotes').insert(upvote); // {user_id: '', issue_id: ''}
 }
 
-function update(changes, id) {
-	return null;
+function remove(userId, issueId) {
+	return db('upvotes').where({ user_id: userId, issue_id: issueId }).del();
 }
 
-function remove(id) {
-	return null;
+function getUserVote(userId) {
+	return db('upvotes').where({ user_id: userId });
+}
+
+function getById(userId, issueId) {
+	return db('upvotes').where({ user_id: userId, issue_id: issueId }).first();
 }
