@@ -18,7 +18,3 @@ function remove(userId, issueId) {
 function getUserVote(userId) {
 	return db('upvotes').where({ user_id: userId });
 }
-
-function getById(userId, issueId) {
-	return db('upvotes').where({ user_id: userId, issue_id: issueId }).first();
-}
