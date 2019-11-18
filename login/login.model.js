@@ -6,7 +6,7 @@ module.exports = {
 }
 
 function get(username = "%") {
-    knex("users")
+    return knex("users")
         .select("*")
         .where("username", "like", username)
 }
