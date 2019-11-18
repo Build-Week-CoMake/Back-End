@@ -8,9 +8,7 @@ function signJWT(data) {
     const payload = data
 
     const secret = process.env.SECRET
-    const options = {
-        maxAge: "1d"
-    }
+    const options = {}
 
     return jwt.sign(payload, secret, options)
 }
@@ -32,6 +30,7 @@ router.post("/", (req, res) => {
         }
 
     }).catch(error => {
+        console.log(error)
         res.status(500).json({
             message: "sever side error",
             error
@@ -49,6 +48,7 @@ router.post("/new", (req, res) => {
         const token = signJWT({ username })
         res.status(200).send(token)
     }).catch(error => {
+        // console.log(error)
         res.status(500).json({
             message: "sever side error",
             error
