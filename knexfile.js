@@ -21,12 +21,16 @@ module.exports = {
       database: process.env.DATABASE_URL,
       ssl: true
     },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: "./database/migrations"
+    },
+    seeds: {
+      directory: "./database/seeds"
+    },
     pool: {
       min: 2,
       max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
     },
     useNullAsDefault: true
   }
