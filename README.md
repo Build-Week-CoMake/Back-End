@@ -11,3 +11,6 @@
 | add new issue | /issues (POST) | { *id:int, title:" ", img: "(url)", location: " ", description: " "} |
 | edit issue | /issues/:id (PUT) | {any modified field} |
 | delete issue | /issues/:id (DELETE) | | 
+| get user's upvotes | /upvote/ (GET) | |
+| add new upvote | /upvote/:id (POST) | |
+| remove upvote | /upvote/:id (DELETE) | |
