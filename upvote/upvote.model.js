@@ -3,8 +3,7 @@ const knex = require('../database/config');
 module.exports = {
 	add,
 	remove,
-	getUserVote,
-	getById
+	getUserVote
 };
 
 function add(upvote) {

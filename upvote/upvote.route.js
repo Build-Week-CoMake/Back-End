@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const db = require('./upvote.model');
-const restricted = require('../middleware.js');
+const { auth: restricted } = require('../middleware.js');
 
 //get list of all issues user has voted on
 router.get('/', restricted, (req, res) => {
