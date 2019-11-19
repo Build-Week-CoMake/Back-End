@@ -11,7 +11,7 @@ function auth(req, res, next) {
         if (error) {
             res.status(400).json({
                 error
-            })
+            }).end()
         } else {
             req.token = data
             next()
