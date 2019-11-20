@@ -5,8 +5,7 @@ const { auth: restricted } = require('../middleware.js');
 //get list of all issues user has voted on
 router.get('/', restricted, (req, res) => {
 	const id = req.token.username;
-	db
-		.getUserVote(id)
+	db.getUserVote(id)
 		.then((votes) => {
 			if (votes) {
 				res.status(201).json(votes);
@@ -27,8 +26,7 @@ router.post('/:id', restricted, (req, res) => {
 		issue_id: req.params.id
 	};
 
-	db
-		.add(voteData)
+	db.add(voteData)
 		.then((vote) => {
 			res.status(201).json(vote);
 		})
@@ -42,8 +40,7 @@ router.delete('/:id', restricted, (req, res) => {
 	const userId = req.token.username;
 	const issueId = req.params.id;
 
-	db
-		.remove(userId, issueId)
+	db.remove(userId, issueId)
 		.then((deleted) => {
 			if (deleted) {
 				res.status(201).json({ message: 'removed upvote' });

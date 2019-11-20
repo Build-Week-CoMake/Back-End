@@ -1,13 +1,15 @@
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('issues').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('issues').insert([
+        { title: "a", picture: "(url)", location: "mars", description: " ", user_id: "admin" },
+        { title: "b", picture: "(url)", location: "mars", description: " ", user_id: "admin" },
+        { title: "c", picture: "(url)", location: "mars", description: " ", user_id: "admin" },
+        { title: "a", picture: "(url)", location: "earth", description: " ", user_id: "admin" },
+        { title: "b", picture: "(url)", location: "earth", description: " ", user_id: "admin" }
       ]);
     });
 };

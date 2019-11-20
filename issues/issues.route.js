@@ -50,7 +50,10 @@ router.put("/:id", auth, (req, res) => {
 
 router.delete("/:id", auth, (req, res) => {
 
-    db.del({ id: req.params.id }).then(async r => {
+    db.del({
+        id: req.params.id,
+        user_id: req.token.username
+    }).then(async r => {
 
         let data = await db.get();
         res.status(200).send(data);

@@ -18,13 +18,17 @@ router.post("/", (req, res) => {
     if (!username || !password) res.status(401).send("missing username or password")
 
     db.get(username).then(r => {
-        if (!r || r.length == 0) {
+        let user = r[0];
+        if (!user) {
             res.status(404).send("user does not exist").end()
         }
 
-        if (bcrypt.compareSync(password, r[0].password)) {
-            const token = signJWT({ username })
-            res.status(200).send(token)
+        if (bcrypt.compareSync(password, user.password)) {
+            const token = signJWT({ username, location: user.location })
+            res.status(200).json({
+                token,
+                location: user.location
+            })
         } else {
             res.status(400).send("incorrect password")
         }
@@ -39,14 +43,17 @@ router.post("/", (req, res) => {
 })
 
 router.post("/new", (req, res) => {
-    const { username, password } = req.body
+    const { username, password, location } = req.body
 
     if (!username || !password) res.status(401).send("missing username or password")
     req.body.password = bcrypt.hashSync(password, 14)
 
     db.add(req.body).then(r => {
-        const token = signJWT({ username })
-        res.status(200).send(token)
+        const token = signJWT({ username, location })
+        res.status(200).json({
+            token,
+            location
+        })
     }).catch(error => {
         // console.log(error)
         res.status(500).json({
