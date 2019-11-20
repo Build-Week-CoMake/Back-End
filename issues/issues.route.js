@@ -15,6 +15,11 @@ router.get("/", auth, (req, res) => {
 })
 
 router.post("/", auth, (req, res) => {
+    let { title, picture, location, description } = req.body
+    if (!title || !picture || !location || !description) {
+        res.status(404).send("missing a required field").end()
+    }
+
     let payload = {
         user_id: req.token.username,
         ...req.body

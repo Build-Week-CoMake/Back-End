@@ -1,2 +1,4 @@
-require('dotenv').config({ path: "../" })
-module.exports = require("knex")(require("../knexfile")[process.env.NODE_ENV || "development"])
+require('dotenv').config()
+
+let env = (process.env.NODE_ENV == "test") ? "development" : process.env.NODE_ENV
+module.exports = require("knex")(require("../knexfile")[env])

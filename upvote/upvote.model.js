@@ -15,5 +15,7 @@ function remove(userId, issueId) {
 }
 
 function getUserVote(userId) {
-	return knex('upvotes').where({ user_id: userId });
+	return knex('upvotes')
+		.innerJoin("issues", "issues.id", "upvotes.issue_id")
+		.where({ "upvotes.user_id": userId });
 }

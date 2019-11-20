@@ -21,6 +21,7 @@ router.get('/', restricted, (req, res) => {
 
 //add a users vote into the database
 router.post('/:id', restricted, (req, res) => {
+	const id = req.token.username;
 	const voteData = {
 		user_id: req.token.username,
 		issue_id: req.params.id
@@ -28,7 +29,9 @@ router.post('/:id', restricted, (req, res) => {
 
 	db.add(voteData)
 		.then((vote) => {
-			res.status(201).json(vote);
+			db.getUserVote(id).then(r => {
+				res.status(201).send(r)
+			})
 		})
 		.catch((error) => {
 			console.log(error);
@@ -43,7 +46,9 @@ router.delete('/:id', restricted, (req, res) => {
 	db.remove(userId, issueId)
 		.then((deleted) => {
 			if (deleted) {
-				res.status(201).json({ message: 'removed upvote' });
+				db.getUserVote(userId).then(r => {
+					res.status(201).send(r)
+				})
 			} else {
 				res.status(404).json({ message: 'Could not find upvote data with given ids' });
 			}
