@@ -27,7 +27,8 @@ router.post("/", (req, res) => {
             const token = signJWT({ username, location: user.location })
             res.status(200).json({
                 token,
-                location: user.location
+                location: user.location,
+                username
             })
         } else {
             res.status(400).send("incorrect password")
@@ -52,10 +53,10 @@ router.post("/new", (req, res) => {
         const token = signJWT({ username, location })
         res.status(200).json({
             token,
-            location
+            location,
+            username
         })
     }).catch(error => {
-        // console.log(error)
         res.status(500).json({
             message: "sever side error",
             error
