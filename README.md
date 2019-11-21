@@ -13,8 +13,8 @@ https://backend-buildweek.herokuapp.com/
 | get issue by location | /issues?location=foobar (GET) | |
 | get issue by user| /issues?user_id=foobar (GET) | |
 | add new issue | /issues (POST) | { *id:int, title:" ", picture: "(url)", location: " ", description: " "} |
-| edit issue | /issues/:id (PUT) | {any modified field} |
-| delete issue | /issues/:id (DELETE) | | 
+| edit issue | /issues/:id (PUT) | {location:"",any modified field} |
+| delete issue | /issues/:id (DELETE) | {location: " "} | 
 | get user's upvotes | /upvote (GET) | |
 | add new upvote | /upvote/:id (POST) | |
 | remove upvote | /upvote/:id (DELETE) | |

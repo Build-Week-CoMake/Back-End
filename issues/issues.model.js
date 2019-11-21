@@ -46,9 +46,12 @@ function add(obj) {
     return knex("issues").insert(obj)
 }
 
-function edit(id, obj) {
+function edit(id, obj, user_id) {
     return knex("issues")
-        .where("id", "=", id)
+        .where({
+            id,
+            user_id
+        })
         .update(obj)
 }
 

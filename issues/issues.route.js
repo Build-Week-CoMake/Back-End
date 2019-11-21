@@ -26,7 +26,7 @@ router.post("/", auth, (req, res) => {
     }
     db.add(payload).then(async r => {
 
-        let data = await db.get();
+        let data = await db.get({ location: req.body.location });
         res.status(200).send(data);
 
     }).catch(error => {
@@ -40,9 +40,10 @@ router.post("/", auth, (req, res) => {
 
 router.put("/:id", auth, (req, res) => {
 
-    db.edit(req.params.id, req.body).then(async r => {
 
-        let data = await db.get();
+    db.edit(req.params.id, req.body, req.token.username).then(async r => {
+
+        let data = await db.get({ location: req.body.location });
         res.status(200).send(data);
 
     }).catch(error => {
@@ -60,7 +61,7 @@ router.delete("/:id", auth, (req, res) => {
         user_id: req.token.username
     }).then(async r => {
 
-        let data = await db.get();
+        let data = await db.get({ location: req.body.location });
         res.status(200).send(data);
 
     }).catch(error => {
