@@ -1,7 +1,6 @@
 const request = require("supertest")
 const server = require("../server")
 
-
 describe("end-to-end: /issues", () => {
     it("/issues (get)", () => {
         return request(server)
