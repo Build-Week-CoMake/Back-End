@@ -61,7 +61,7 @@ router.delete("/:id", auth, (req, res) => {
         user_id: req.token.username
     }).then(async r => {
 
-        let data = await db.get({ location: req.body.location });
+        let data = await db.get({ location: req.headers.location });
         res.status(200).send(data);
 
     }).catch(error => {
